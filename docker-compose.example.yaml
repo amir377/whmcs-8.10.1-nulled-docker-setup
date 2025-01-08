@@ -8,7 +8,7 @@ services:
         - LICENCE=${LICENCE:-123456789}
         - CONTAINER_NAME=${CONTAINER_NAME-whmcs-8-10-1}
         - ALLOW_HOST=${ALLOW_HOST:-0.0.0.0}
-        - APP_PORT=${APP_PORT:-30190}
+        - APP_PORT=${APP_PORT:-30290}
         - TZ=${TZ:-Etc/UTC}
         - DB_HOST=${DB_HOST:-mysql}
         - DB_PORT=${DB_PORT:-3306}
@@ -34,7 +34,7 @@ services:
       - LICENCE=${LICENCE:-123456789}
       - CONTAINER_NAME=${CONTAINER_NAME-whmcs-8-10-1}
       - ALLOW_HOST=${ALLOW_HOST:-0.0.0.0}
-      - APP_PORT=${APP_PORT:-30190}
+      - APP_PORT=${APP_PORT:-30290}
       - TZ=${TZ:-Etc/UTC}
       - DB_HOST=${DB_HOST:-mysql}
       - DB_PORT=${DB_PORT:-3306}
