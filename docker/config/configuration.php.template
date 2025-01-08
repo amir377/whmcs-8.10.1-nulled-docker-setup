@@ -1,0 +1,16 @@
+<?php
+$license = "{{LICENCE}}";
+$db_host = "{{DB_HOST}}";
+$db_port = "{{DB_PORT}}";
+$db_username = "{{DB_USERNAME}}";
+$db_password = "{{DB_PASSWORD}}";
+$db_name = "{{DB_NAME}}";
+$db_tls_ca = "{{DB_TLS_CA}}";
+$db_tls_ca_path = "{{DB_TLS_CA_PATH}}";
+$db_tls_cert = "{{DB_TLS_CERT}}";
+$db_tls_cipher = "{{DB_TLS_CIPHER}}";
+$db_tls_key = "{{DB_TLS_KEY}}";
+$db_tls_verify_cert = "{{DB_TLS_VERIFY_CERT}}";
+$mysql_charset = "{{MYSQL_CHARSET}}";
+$cc_encryption_hash = "{{CC_ENCRYPTION_HASH}}";
+$templates_compiledir = "{{TEMPLATES_COMPILEDIR}}";

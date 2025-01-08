@@ -1,0 +1,11 @@
+.DS_Store
+/.fleet
+/.idea
+/.vscode
+.env
+docker-compose.yaml
+docker/nginx/nginx.conf
+.htaccess
+configuration.php
+install/log/installer.log
+/install

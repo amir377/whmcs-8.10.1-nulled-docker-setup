@@ -1,0 +1,74 @@
+services:
+  whmcs-8-10-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - TYPE=${TYPE:-new}
+        - LICENCE=${LICENCE:-123456789}
+        - CONTAINER_NAME=${CONTAINER_NAME-whmcs-8-10-1}
+        - ALLOW_HOST=${ALLOW_HOST:-0.0.0.0}
+        - APP_PORT=${APP_PORT:-30190}
+        - TZ=${TZ:-Etc/UTC}
+        - DB_HOST=${DB_HOST:-mysql}
+        - DB_PORT=${DB_PORT:-3306}
+        - DB_USERNAME=${DB_USERNAME:-root}
+        - DB_PASSWORD=${DB_PASSWORD:-secretpass}
+        - DB_NAME=${DB_NAME:-whmcs-8-10-1}
+        - DB_TLS_CA=${DB_TLS_CA:-}
+        - DB_TLS_CA_PATH=${DB_TLS_CA_PATH:-}
+        - DB_TLS_CERT=${DB_TLS_CERT:-}
+        - DB_TLS_CIPHER=${DB_TLS_CIPHER:-}
+        - DB_TLS_KEY=${DB_TLS_KEY:-}
+        - DB_TLS_VERIFY_CERT=${DB_TLS_VERIFY_CERT:-}
+        - MYSQL_CHARSET=${MYSQL_CHARSET:-utf8}
+        - CC_ENCRYPTION_HASH=${CC_ENCRYPTION_HASH:-}
+        - TEMPLATES_COMPILEDIR=${TEMPLATES_COMPILEDIR:-templates_c}
+    image: "${CONTAINER_NAME}:latest"
+    deploy:
+      replicas: ${REPLICAS:-1}
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - TYPE=${TYPE:-new}
+      - LICENCE=${LICENCE:-123456789}
+      - CONTAINER_NAME=${CONTAINER_NAME-whmcs-8-10-1}
+      - ALLOW_HOST=${ALLOW_HOST:-0.0.0.0}
+      - APP_PORT=${APP_PORT:-30190}
+      - TZ=${TZ:-Etc/UTC}
+      - DB_HOST=${DB_HOST:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_USERNAME=${DB_USERNAME:-root}
+      - DB_PASSWORD=${DB_PASSWORD:-secretpass}
+      - DB_NAME=${DB_NAME:-whmcs-8-10-1}
+      - DB_TLS_CA=${DB_TLS_CA:-}
+      - DB_TLS_CA_PATH=${DB_TLS_CA_PATH:-}
+      - DB_TLS_CERT=${DB_TLS_CERT:-}
+      - DB_TLS_CIPHER=${DB_TLS_CIPHER:-}
+      - DB_TLS_KEY=${DB_TLS_KEY:-}
+      - DB_TLS_VERIFY_CERT=${DB_TLS_VERIFY_CERT:-}
+      - MYSQL_CHARSET=${MYSQL_CHARSET:-utf8}
+      - CC_ENCRYPTION_HASH=${CC_ENCRYPTION_HASH:-}
+      - TEMPLATES_COMPILEDIR=${TEMPLATES_COMPILEDIR:-templates_c}
+    networks:
+      - general
+    expose:
+      - "80"
+      - "9090"
+
+  whmcs-8-10-1-nginx:
+    image: nginx:latest
+    container_name: whmcs-8-10-1-nginx-proxy
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "${ALLOW_HOST}:${APP_PORT}:${APP_PORT}"
+    depends_on:
+      - whmcs-8-10-1
+    networks:
+      - general
+    restart: always
+
+networks:
+  general:
+    external: true
