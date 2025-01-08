@@ -36,10 +36,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PECL extensions (Swoole)
-RUN pecl install swoole \
-    && docker-php-ext-enable swoole
-
 # Apply the timezone configuration to PHP
 RUN echo "date.timezone = ${TZ}" >> /usr/local/etc/php/conf.d/timezone.ini
 
@@ -142,8 +138,7 @@ RUN sed -i 's/^User .*/User www-data/' /etc/apache2/apache2.conf \
     && sed -i 's/^Group .*/Group www-data/' /etc/apache2/apache2.conf
 
 # Expose port 80 for Apache
-# Expose port 9090 for Swoole
-EXPOSE 80 9090
+EXPOSE 80
 
 # Start Apache and cron service
-CMD cron && apache2ctl -D FOREGROUND & php /var/www/html/swoole_server.php
+CMD cron && apache2ctl -D FOREGROUND
