@@ -1,5 +1,5 @@
-# Use the specified PHP version dynamically or default to 8.1
-FROM php:8.1-apache
+# Use the specified PHP version dynamically or default to 7.4
+FROM php:7.4-apache
 
 # Set the timezone
 ENV TZ=${TZ}
@@ -120,9 +120,9 @@ RUN if [ "$TYPE" != "new" ]; then \
 # Install ionCube loader
 RUN curl -fsSL "http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz" -o ioncube.tar.gz \
     && tar -xzf ioncube.tar.gz || { echo "ionCube tar extraction failed"; exit 1; } \
-    && mv ioncube/ioncube_loader_lin_8.1.so $(php-config --extension-dir) \
+    && mv ioncube/ioncube_loader_lin_7.4.so $(php-config --extension-dir) \
     && rm -Rf ioncube.tar.gz ioncube \
-    && docker-php-ext-enable ioncube_loader_lin_8.1 || { echo "ionCube loader enabling failed"; exit 1; }
+    && docker-php-ext-enable ioncube_loader_lin_7.4 || { echo "ionCube loader enabling failed"; exit 1; }
 
 
 # Copy cron job definition
